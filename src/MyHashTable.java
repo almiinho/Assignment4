@@ -33,6 +33,22 @@ public class MyHashTable<K, V> {
         int index = hashCode % table.length;
         return index;
     }
+    public void put(K key, V value) {
+        if (key == null) {
+            return;
+        }
+        int index = getIndex(key);//Get the index of the bucket
+        LinkedList<Entry<K, V>> bucket = table[index];
+        for (Entry<K, V> entry : bucket) { // Check if the key already exists in the bucket
+            if (entry.key.equals(key)) {
+                entry.value = value; // Update the value of a key
+                return;
+            }
+        }
+        bucket.add(new Entry<K, V>(key, value)); // Add a new entry
+        size++;
+    }
+
 
 }
 
