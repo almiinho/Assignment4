@@ -28,6 +28,11 @@ public class MyHashTable<K, V> {
         }
         size = 0;
     }
+    private int getIndex(K key) {
+        int hashCode = key.hashCode(); // Get the hash code of the key
+        int index = hashCode % table.length;
+        return index;
+    }
 
 }
 
