@@ -62,6 +62,26 @@ public class MyHashTable<K, V> {
             }
         }
     }
+    public V get(K key) {
+        if (key == null) {
+            return null;
+        }
+        int index = getIndex(key); // Get the index of the bucket
+        LinkedList<Entry<K, V>> bucket = table[index];
+        for (Entry<K, V> entry : bucket) {
+            if (entry.key.equals(key)) {
+                return entry.value; // Return the value if the key is exists
+            }
+        }
+        return null; // Return null if the key does not exist
+    }
+    public void printBucketSize() {
+        int[] sizes = new int[table.length]; // Create an array for each bucket
+        for (int i = 0; i < table.length; i++) {
+            sizes[i] = table[i].size(); // Get the size of each bucket
+        }
+        System.out.println("Bucket sizes: " + Arrays.toString(sizes));
+    }
 
 
 }
